@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Pine
+Exec=pine
+Comment=Run Pine apps on your computer
+Type=Application
+Categories=GTK;GNOME;Utility;

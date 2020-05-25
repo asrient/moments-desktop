@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<title>Moments</title>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+</head>
+
+<body>
+  <div id="MAIN">
+    <div id="controls"></div>
+    <div style="min-height: 100vh;">
+      <div id="root">
+        <div class="center" style="height:100vh">
+          LOADING
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script type="text/javascript">
+  const electron = require('electron');
+  const win = electron.remote.getCurrentWindow();
+</script>
+
+<script type="text/javascript">
+  const MIME = require('mime-types');
+  const crypto = require('crypto');
+  const path = require('path');
+  const prettyBytes = require('pretty-bytes');
+  const Datastore = require('nedb');
+  const airPeer = require('./airPeer/lib.js');
+  const ds = require('data-store');
+  const sharp = require('sharp');
+  const Exif = require('exif').ExifImage;
+  const fs = require('fs');
+  const Resources = require('./resources.js');
+  const dbDir = electron.remote.app.getPath("userData") + '/db';
+  const filesDir = electron.remote.app.getPath("userData") + '/files';
+  const dataDir = electron.remote.app.getPath("userData");
+  const dirs = {
+    pictures: electron.remote.app.getPath('pictures'),
+    downloads: electron.remote.app.getPath('downloads'),
+    temp: electron.remote.app.getPath('temp'),
+    videos: electron.remote.app.getPath('videos'),
+    userData: electron.remote.app.getPath('userData'),
+    home: electron.remote.app.getPath('home'),
+    desktop: electron.remote.app.getPath('desktop'),
+    music: electron.remote.app.getPath('music'),
+  }
+  const VERSION = electron.remote.app.getVersion();
+  window.updates = {
+    check: function () {
+      electron.ipcRenderer.send('check_update');
+    },
+    install: function () {
+      electron.ipcRenderer.send('install_update');
+    }
+  }
+  const recs = new Datastore({
+    filename: dbDir + '/records.txt',
+    autoload: true
+  });
+  window.srcs = ds({
+    path: dbDir + '/sources.json'
+  });
+  window.tags = ds({
+    path: dbDir + '/tags.json'
+  });
+  window.resources = new Resources(dbDir + '/resources.json');
+</script>
+
+<script type="text/javascript" src="bundle://moments.js"></script>
+
+<style>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    outline: none;
+    -webkit-user-select: none;
+    cursor: url("assets://cursors/pointer.cur"), auto;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -ms-overflow-style: scrollbar;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  body {
+    margin: 0px;
+    padding: 0px;
+    width: 100vw;
+    min-height: 100vh;
+    overflow: auto;
+  }
+
+  html,
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #7a7a7a;
+    height: 100vh;
+  }
+
+  #MAIN {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    min-height: 100vh;
+    width: 100vw;
+  }
+
+  #root {
+    min-height: 100vh;
+    width: 100vw;
+    border: 0px;
+    overflow: auto;
+  }
+
+  #controls {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 11;
+    height: 2rem;
+    width: 5rem;
+    -webkit-app-region: no-drag;
+    -webkit-user-select: none;
+  }
+
+  .bar_butts {
+    height: 0.85rem;
+    width: 0.85rem;
+    border-radius: 100%;
+    margin: 0.2rem;
+    margin-left: 0.7rem;
+    margin-right: 0rem;
+    background: rgba(0, 0, 0, 0.205);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-app-region: no-drag;
+  }
+
+  .bar_butt_red {
+    background: #FF6157;
+    border: 0.5px rgba(0, 0, 0, 0.15) solid;
+  }
+
+  .bar_butt_red:hover {
+    background: rgb(158, 0, 0);
+  }
+
+  .bar_butt_green {
+    background: #2ACB42;
+    border: 0.5px rgba(0, 0, 0, 0.15) solid;
+  }
+
+  .bar_butt_green:hover {
+    background: rgb(0, 131, 17);
+  }
+
+  .bar_butt_yellow {
+    background: #FFC12F;
+    border: 0.5px rgba(0, 0, 0, 0.15) solid;
+  }
+
+  .bar_butt_yellow:hover {
+    background: rgb(168, 115, 0);
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+    margin: 2px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    display: block;
+    border-radius: 7px;
+    background: #47474757;
+  }
+</style>
+
+</html>
