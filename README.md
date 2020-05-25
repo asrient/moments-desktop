@@ -1,2 +1,2 @@
-# messages-desktop
- Chat with peers over WiFi and the internet anonymously
+# Moments app
+ View your photos from all devices in one place.
