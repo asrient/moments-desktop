@@ -36,6 +36,7 @@
   const sharp = require('sharp');
   const Exif = require('exif').ExifImage;
   const fs = require('fs');
+  const EventEmitter = require('events');
   const Resources = require('./resources.js');
   const dbDir = electron.remote.app.getPath("userData") + '/db';
   const filesDir = electron.remote.app.getPath("userData") + '/files';

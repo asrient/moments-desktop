@@ -6,7 +6,7 @@ function createWindow() {
     const win = new BrowserWindow({
         width: 800,
         height: 500,
-        show: false,
+        //show: false,
         transparent: false,
         opacity: 1,
         title: app.name,
