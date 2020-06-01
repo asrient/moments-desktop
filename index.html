@@ -64,6 +64,9 @@
     filename: dbDir + '/records.txt',
     autoload: true
   });
+  window.info = ds({
+    path: dbDir + '/settings.json'
+  });
   window.srcs = ds({
     path: dbDir + '/sources.json'
   });
