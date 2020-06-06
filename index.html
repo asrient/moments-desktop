@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="bundle://xui/xui.css">
 </head>
 
 <body>
@@ -75,7 +76,10 @@
   });
   window.resources = new Resources(dbDir + '/resources.json');
 </script>
-
+<script type="text/javascript" src="bundle://xui/xui.js"></script>
+<script>
+  changeTheme('light');
+</script>
 <script type="text/javascript" src="bundle://moments.js"></script>
 
 <style>
