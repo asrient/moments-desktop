@@ -1,3 +1,4 @@
+const { Buffer } = require('buffer');
 const version = '1.0';
 const seperator = "\r\n\r\n";
 const sepLen = Buffer.byteLength(seperator);

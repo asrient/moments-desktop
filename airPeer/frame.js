@@ -1,3 +1,5 @@
+const { Buffer } = require('buffer');
+
 const frameSize = 65535;
 
 function parseChunk(buffer) {

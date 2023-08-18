@@ -1,3 +1,4 @@
+const { Buffer } = require('buffer');
 const net = require('net');
 const Emitter = require("component-emitter");
 const message = require('./msg.js');

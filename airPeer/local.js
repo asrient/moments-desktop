@@ -1,5 +1,6 @@
 const net = require('net');
 const Emitter = require("component-emitter");
+const { Buffer } = require('buffer');
 const mdns = require('multicast-dns')();
 const crypto = require('crypto');
 const frame = require('./frame.js');

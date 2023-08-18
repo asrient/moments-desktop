@@ -43,18 +43,19 @@
   "author": "ASRIENT",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^8.2.3",
-    "electron-builder": "^22.6.1"
+    "electron": "^26.0.0",
+    "electron-builder": "^24.6.3"
   },
   "dependencies": {
+    "@electron/remote": "^2.0.10",
     "component-emitter": "^1.3.0",
     "data-store": "^4.0.3",
-    "electron-updater": "^4.3.1",
+    "electron-updater": "^6.1.1",
     "exif": "^0.6.0",
     "mime-types": "^2.1.27",
     "multicast-dns": "^7.2.2",
     "nedb": "^1.8.0",
     "pretty-bytes": "^5.3.0",
-    "sharp": "^0.25.3"
+    "sharp": "^0.32.5"
   }
 }

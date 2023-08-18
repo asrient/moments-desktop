@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { autoUpdater } = require("electron-updater");
+require('@electron/remote/main').initialize();
 
 function createWindow() {
     // Create the browser window.
@@ -19,12 +20,16 @@ function createWindow() {
         icon: "./icon.ico",
         webPreferences: {
             nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true,
             //preload: './preload.js'
         }
     })
 
     const installDir = app.getAppPath();
     const filesDir = app.getPath("userData") + '/files';
+
+    require("@electron/remote/main").enable(win.webContents);
 
     win.webContents.session.protocol.registerFileProtocol('assets', (req, cb) => {
         var url = req.url.substr(9);

@@ -1,3 +1,4 @@
+const { Buffer } = require('buffer');
 const Emitter = require("component-emitter");
 const crypto = require('crypto');
 const ws = require("./websocket.js");
